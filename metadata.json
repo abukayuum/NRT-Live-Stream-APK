@@ -1,0 +1,6 @@
+{
+  "name": "NRT STREAM",
+  "description": "Official portal for NRT STREAM Live TV & Sports Server. Download APK for Android TV, Fire TV, and all Android devices with 4K zero-buffer worldwide streams on premium-method.com.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

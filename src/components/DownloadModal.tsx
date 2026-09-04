@@ -67,27 +67,27 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#090d16]/90">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-              <Tv className="w-5 h-5 text-black" />
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-800 bg-[#090d16]/90">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 shrink-0">
+              <Tv className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h3 className="font-bold text-lg text-white">NRT STREAM APK</h3>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 font-semibold border border-cyan-500/20">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <h3 className="font-bold text-base sm:text-lg text-white">NRT STREAM APK</h3>
+                <span className="text-[11px] sm:text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 font-semibold border border-cyan-500/20">
                   {CURRENT_RELEASE.version}
                 </span>
               </div>
-              <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
-                <Github className="w-3 h-3 text-cyan-400" />
-                <span>abukayuum/NRT-Live-Stream-APK (Release 2.0)</span>
+              <p className="text-[11px] sm:text-xs text-slate-400 flex items-center gap-1 mt-0.5">
+                <Github className="w-3 h-3 text-cyan-400 shrink-0" />
+                <span className="truncate max-w-[190px] sm:max-w-none">abukayuum/NRT-Live-Stream-APK (Release 2.0)</span>
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors"
+            className="p-1.5 sm:p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors shrink-0"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -95,44 +95,47 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
         </div>
 
         {/* Device Switcher Tabs */}
-        <div className="grid grid-cols-3 gap-1 p-2 bg-[#090d16] border-b border-slate-800 text-sm font-medium">
+        <div className="grid grid-cols-3 gap-1 p-1.5 sm:p-2 bg-[#090d16] border-b border-slate-800 text-xs sm:text-sm font-medium">
           <button
             onClick={() => setActiveTab('tv')}
-            className={`flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all ${
+            className={`flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-lg transition-all min-h-[36px] ${
               activeTab === 'tv'
-                ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-sm'
+                ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-sm font-semibold'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
             }`}
           >
-            <Tv className="w-4 h-4" />
-            <span>Android TV / Firestick</span>
+            <Tv className="w-4 h-4 shrink-0" />
+            <span className="hidden sm:inline">Android TV / Firestick</span>
+            <span className="sm:hidden">Android TV</span>
           </button>
           <button
             onClick={() => setActiveTab('mobile')}
-            className={`flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all ${
+            className={`flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-lg transition-all min-h-[36px] ${
               activeTab === 'mobile'
-                ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-sm'
+                ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-sm font-semibold'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
             }`}
           >
-            <Smartphone className="w-4 h-4" />
-            <span>Android Mobile</span>
+            <Smartphone className="w-4 h-4 shrink-0" />
+            <span className="hidden sm:inline">Android Mobile</span>
+            <span className="sm:hidden">Mobile</span>
           </button>
           <button
             onClick={() => setActiveTab('qr')}
-            className={`flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all ${
+            className={`flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-lg transition-all min-h-[36px] ${
               activeTab === 'qr'
-                ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-sm'
+                ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-sm font-semibold'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
             }`}
           >
-            <QrCode className="w-4 h-4" />
-            <span>Scan QR Code</span>
+            <QrCode className="w-4 h-4 shrink-0" />
+            <span className="hidden sm:inline">Scan QR Code</span>
+            <span className="sm:hidden">QR Scan</span>
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto space-y-6">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-6">
           {activeTab === 'tv' && (
             <div className="space-y-4">
               <div className="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -151,7 +154,7 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
                 </div>
                 <button
                   onClick={() => handleCopy(CURRENT_RELEASE.downloaderCode, 'code')}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-cyan-500 text-black font-semibold hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20 text-sm whitespace-nowrap"
+                  className="w-full sm:w-auto justify-center flex items-center gap-2 px-4 py-2.5 rounded-lg bg-cyan-500 text-black font-semibold hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20 text-sm whitespace-nowrap min-h-[42px]"
                 >
                   {copiedCode ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   {copiedCode ? (lang === 'en' ? 'Copied Code!' : 'কপি হয়েছে!') : (lang === 'en' ? 'Copy Code' : 'কোড কপি করুন')}
@@ -176,15 +179,15 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
             <div className="space-y-4">
               <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
                 <div className="flex items-center justify-between text-xs text-slate-400">
-                  <span className="font-mono text-cyan-300 font-semibold">{CURRENT_RELEASE.fileName}</span>
-                  <span className="text-emerald-400 font-mono font-medium">Size: {CURRENT_RELEASE.fileSize}</span>
+                  <span className="font-mono text-cyan-300 font-semibold truncate max-w-[180px] sm:max-w-none">{CURRENT_RELEASE.fileName}</span>
+                  <span className="text-emerald-400 font-mono font-medium shrink-0">Size: {CURRENT_RELEASE.fileSize}</span>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
                   <button
                     onClick={handleDownloadTrigger}
                     disabled={downloading}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold shadow-lg shadow-cyan-500/25 transition-all text-sm disabled:opacity-50"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold shadow-lg shadow-cyan-500/25 transition-all text-sm disabled:opacity-50 min-h-[44px]"
                   >
                     <Download className={`w-4 h-4 ${downloading ? 'animate-bounce' : ''}`} />
                     {downloading 
@@ -196,7 +199,7 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
                     href={CURRENT_RELEASE.releasesUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-sm transition-all border border-slate-700"
+                    className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-sm transition-all border border-slate-700 min-h-[44px]"
                   >
                     <Github className="w-4 h-4 text-cyan-400" />
                     <span>GitHub Releases</span>
@@ -205,7 +208,7 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
                 </div>
 
                 <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-xs text-slate-400">
-                  <span className="font-mono text-slate-300 truncate max-w-[260px] sm:max-w-md">
+                  <span className="font-mono text-slate-300 truncate max-w-[200px] sm:max-w-md">
                     {CURRENT_RELEASE.directApkUrl}
                   </span>
                   <button
@@ -221,12 +224,12 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
               <div className="grid grid-cols-2 gap-3 text-xs">
                 <div className="p-3 rounded-lg bg-[#090d16] border border-slate-800">
                   <div className="text-slate-400">Android Support</div>
-                  <div className="font-semibold text-white mt-0.5">Android 7.0 - Android 15+</div>
+                  <div className="font-semibold text-white mt-0.5">Android 7.0 - 15+</div>
                 </div>
                 <div className="p-3 rounded-lg bg-[#090d16] border border-slate-800">
                   <div className="text-slate-400">Safety Verification</div>
                   <div className="font-semibold text-emerald-400 mt-0.5 flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5" /> No Ads / No Root
+                    <ShieldCheck className="w-3.5 h-3.5" /> No Ads / Safe
                   </div>
                 </div>
               </div>
@@ -336,25 +339,25 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-slate-800 bg-[#090d16] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2 text-slate-400">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>SHA-256: {CURRENT_RELEASE.sha256.substring(0, 16)}...</span>
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-slate-800 bg-[#090d16] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2 text-slate-400 order-2 sm:order-1 text-[11px] sm:text-xs">
+            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span className="truncate font-mono">SHA-256: {CURRENT_RELEASE.sha256.substring(0, 16)}...</span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5 w-full sm:w-auto order-1 sm:order-2">
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+              className="flex-1 sm:flex-initial px-4 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors text-center font-medium min-h-[40px]"
             >
               {lang === 'en' ? 'Close' : 'বন্ধ করুন'}
             </button>
             <button
               onClick={handleDownloadTrigger}
               disabled={downloading}
-              className="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-bold transition-all shadow-md shadow-cyan-500/20 flex items-center gap-1.5"
+              className="flex-1 sm:flex-initial px-5 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-bold transition-all shadow-md shadow-cyan-500/20 flex items-center justify-center gap-1.5 min-h-[40px]"
             >
               <Download className="w-4 h-4" />
-              {lang === 'en' ? 'Download APK' : 'ডাউনলোড করুন'}
+              <span>{lang === 'en' ? 'Download APK' : 'ডাউনলোড করুন'}</span>
             </button>
           </div>
         </div>

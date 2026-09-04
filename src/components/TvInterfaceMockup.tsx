@@ -15,6 +15,7 @@ import {
   ChevronRight,
   Maximize2
 } from 'lucide-react';
+import { CURRENT_RELEASE } from '../data/channels';
 
 interface TvInterfaceMockupProps {
   lang: 'en' | 'bn';
@@ -79,7 +80,7 @@ export const TvInterfaceMockup: React.FC<TvInterfaceMockupProps> = ({ lang }) =>
       <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-3/4 h-28 bg-cyan-500/20 blur-3xl -z-10 pointer-events-none rounded-full" />
 
       {/* TV Screen Container */}
-      <div className="relative rounded-2xl overflow-hidden bg-[#05070c] border border-slate-800 aspect-[16/9] flex flex-col justify-between select-none shadow-2xl">
+      <div className="relative rounded-2xl overflow-hidden bg-[#05070c] border border-slate-800 min-h-[390px] sm:min-h-0 sm:aspect-[16/9] flex flex-col justify-between select-none shadow-2xl">
         
         {/* Background Visual Graphic (Sports Broadcast Simulation) */}
         <div className="absolute inset-0 z-0">
@@ -101,12 +102,12 @@ export const TvInterfaceMockup: React.FC<TvInterfaceMockupProps> = ({ lang }) =>
         </div>
 
         {/* Top TV Bar: Brand, Time, Channel Badge, Stream Stats */}
-        <div className="relative z-20 flex items-center justify-between p-4 sm:p-6 text-xs sm:text-sm">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-cyan-500/40 text-cyan-400 font-bold">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+        <div className="relative z-20 flex items-center justify-between p-3 sm:p-6 text-xs sm:text-sm">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-cyan-500/40 text-cyan-400 font-bold text-xs">
+              <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-red-500 animate-ping" />
               <span>NRT STREAM</span>
-              <span className="text-[10px] text-slate-400 font-normal ml-1">v3.8.4</span>
+              <span className="text-[10px] text-slate-400 font-normal ml-0.5 sm:ml-1">{CURRENT_RELEASE.version}</span>
             </div>
             <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-slate-700 text-slate-300">
               <Radio className="w-3.5 h-3.5 text-cyan-400" />
@@ -114,12 +115,12 @@ export const TvInterfaceMockup: React.FC<TvInterfaceMockupProps> = ({ lang }) =>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-bold text-[11px] flex items-center gap-1">
-              <Activity className="w-3 h-3" />
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-bold text-[10px] sm:text-[11px] flex items-center gap-1">
+              <Activity className="w-2.5 sm:w-3 h-2.5 sm:h-3" />
               {currentChannel.tag}
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-bold text-[11px]">
+            <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-bold text-[10px] sm:text-[11px]">
               {currentChannel.resolution}
             </span>
             <span className="hidden sm:inline-block px-2.5 py-1 rounded-md bg-black/50 border border-slate-700 text-slate-300 font-mono text-[11px]">
@@ -129,22 +130,22 @@ export const TvInterfaceMockup: React.FC<TvInterfaceMockupProps> = ({ lang }) =>
         </div>
 
         {/* Center: Live Match Scoreboard & Arena Info */}
-        <div className="relative z-20 px-6 text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700 text-xs text-slate-300">
-            <Clock className="w-3.5 h-3.5 text-cyan-400" />
-            <span>{currentChannel.league} • {matchMinutes}' MIN LIVE</span>
+        <div className="relative z-20 px-3 sm:px-6 text-center space-y-2 sm:space-y-3 my-auto py-2">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700 text-[11px] sm:text-xs text-slate-300 max-w-full truncate">
+            <Clock className="w-3 h-3 text-cyan-400 shrink-0" />
+            <span className="truncate">{currentChannel.league} • {matchMinutes}' MIN LIVE</span>
           </div>
 
-          <h3 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
+          <h3 className="text-lg sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight drop-shadow-md leading-tight px-1">
             {currentChannel.match}
           </h3>
 
-          <div className="flex items-center justify-center gap-4 text-xs sm:text-sm text-slate-300">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[11px] sm:text-sm text-slate-300">
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span>Buffer Health: 100% (Zero Lag)</span>
+              <span>Buffer: 100% (Zero Lag)</span>
             </div>
-            <span className="text-slate-600">•</span>
+            <span className="text-slate-600 hidden xs:inline">•</span>
             <div className="flex items-center gap-1.5 font-mono text-cyan-300">
               <span>Bitrate: {currentChannel.bitrate}</span>
             </div>
@@ -152,35 +153,35 @@ export const TvInterfaceMockup: React.FC<TvInterfaceMockupProps> = ({ lang }) =>
         </div>
 
         {/* Bottom TV Bar: Channel Switcher & Android TV D-Pad Hint */}
-        <div className="relative z-20 p-4 sm:p-6 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
-          <div className="flex items-center justify-between mb-3 text-xs text-slate-400">
+        <div className="relative z-20 p-3 sm:p-6 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
+          <div className="flex items-center justify-between mb-2 sm:mb-3 text-[11px] sm:text-xs text-slate-400">
             <span className="font-semibold text-slate-200 flex items-center gap-1.5">
-              <Tv className="w-4 h-4 text-cyan-400" />
-              {lang === 'en' ? 'Quick Channel Selector (Android TV Remote Ready):' : 'চ্যানেল সিলেক্টর (রিমোট কন্ট্রোল রেডি):'}
+              <Tv className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-cyan-400" />
+              {lang === 'en' ? 'Quick Channel Selector:' : 'চ্যানেল সিলেক্টর:'}
             </span>
-            <span className="text-[11px] text-cyan-400/90 hidden sm:inline">
-              {lang === 'en' ? 'Use D-Pad or Click to Switch' : 'ক্লিক করে চ্যানেল টেস্ট করুন'}
+            <span className="text-[10px] sm:text-[11px] text-cyan-400/90 hidden sm:inline">
+              {lang === 'en' ? 'Remote / Click to Switch' : 'ক্লিক করে চ্যানেল টেস্ট করুন'}
             </span>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5 sm:gap-2">
             {previewChannels.map((chan, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveChannelIdx(idx)}
-                className={`p-2.5 rounded-xl text-left transition-all backdrop-blur-md flex flex-col justify-between border ${
+                className={`p-2 sm:p-2.5 rounded-xl text-left transition-all backdrop-blur-md flex flex-col justify-between border ${
                   activeChannelIdx === idx
                     ? 'bg-cyan-500/20 border-cyan-400 text-white shadow-lg shadow-cyan-500/20 ring-1 ring-cyan-400/50'
                     : 'bg-black/60 border-slate-800 text-slate-400 hover:bg-slate-900/80 hover:text-slate-200 hover:border-slate-700'
                 }`}
               >
                 <div className="flex items-center justify-between gap-1">
-                  <span className="font-bold text-xs truncate">{chan.name}</span>
+                  <span className="font-bold text-[11px] sm:text-xs truncate">{chan.name}</span>
                   {activeChannelIdx === idx && (
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping shrink-0" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-cyan-400 animate-ping shrink-0" />
                   )}
                 </div>
-                <div className="text-[10px] text-slate-400 truncate mt-1">
+                <div className="text-[9px] sm:text-[10px] text-slate-400 truncate mt-0.5 sm:mt-1">
                   {chan.resolution} • {chan.tag}
                 </div>
               </button>

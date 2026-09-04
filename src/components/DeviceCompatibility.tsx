@@ -73,17 +73,17 @@ export const DeviceCompatibility: React.FC<DeviceCompatibilityProps> = ({ lang }
   ];
 
   return (
-    <section id="devices" className="py-20 bg-[#07090e] relative border-t border-slate-800/80">
+    <section id="devices" className="py-12 sm:py-20 bg-[#07090e] relative border-t border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider">
             <Layers className="w-3.5 h-3.5" />
             {lang === 'en' ? 'Universal Android Compatibility' : 'সর্বজনীন ডিভাইস সামঞ্জস্য'}
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white font-display">
             {lang === 'en' ? (
               <>Works on <span className="text-cyan-400">Android TV</span> to Latest Android 15+</>
             ) : (
@@ -91,7 +91,7 @@ export const DeviceCompatibility: React.FC<DeviceCompatibilityProps> = ({ lang }
             )}
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
             {lang === 'en'
               ? 'Engineered with a responsive modular architecture. Whether you are holding a smartphone on 4G or sitting in front of an 85-inch 4K Android TV with a remote, NRT STREAM delivers adaptive streaming with zero setup headache.'
               : 'NRT STREAM এমনভাবে ডিজাইন করা হয়েছে যাতে এটি মোবাইল টাচ স্ক্রিন এবং বড় অ্যান্ড্রয়েড টিভি রিমোট কন্ট্রোল—উভয় ক্ষেত্রেই অনায়াসে কাজ করে।'
@@ -100,7 +100,7 @@ export const DeviceCompatibility: React.FC<DeviceCompatibilityProps> = ({ lang }
         </div>
 
         {/* Device Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
           {devices.map((device) => {
             const Icon = device.icon;
             const isSelected = selectedDevice === device.id;
@@ -108,31 +108,31 @@ export const DeviceCompatibility: React.FC<DeviceCompatibilityProps> = ({ lang }
               <div
                 key={device.id}
                 onClick={() => setSelectedDevice(device.id as any)}
-                className={`cursor-pointer rounded-2xl p-6 transition-all duration-300 border flex flex-col justify-between ${
+                className={`cursor-pointer rounded-2xl p-5 sm:p-6 transition-all duration-300 border flex flex-col justify-between ${
                   isSelected
                     ? 'bg-slate-900/90 border-cyan-500/50 shadow-xl shadow-cyan-500/10 ring-1 ring-cyan-500/30'
                     : 'bg-[#090d16]/70 border-slate-800 hover:border-slate-700 hover:bg-slate-900/40'
                 }`}
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
-                      <Icon className="w-6 h-6" />
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <span className="text-[10px] font-bold px-2 py-1 rounded-md bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+                    <span className="text-[10px] font-bold px-2 py-0.5 sm:py-1 rounded-md bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
                       {device.badge}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-white">{device.title}</h3>
-                  <div className="text-xs font-mono text-cyan-400/90 mt-0.5">{device.subtitle}</div>
+                  <h3 className="text-base sm:text-lg font-bold text-white">{device.title}</h3>
+                  <div className="text-[11px] sm:text-xs font-mono text-cyan-400/90 mt-0.5">{device.subtitle}</div>
 
-                  <p className="text-xs text-slate-400 mt-3 leading-relaxed">
+                  <p className="text-xs text-slate-400 mt-2.5 sm:mt-3 leading-relaxed">
                     {device.desc}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-medium text-slate-300">
+                <div className="mt-4 sm:mt-5 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-medium text-slate-300">
                   <span>{lang === 'en' ? 'Optimized' : 'অপ্টিমাইজড'}</span>
                   <span className="text-emerald-400 flex items-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5" /> 100% Tested
@@ -154,48 +154,54 @@ export const DeviceCompatibility: React.FC<DeviceCompatibilityProps> = ({ lang }
                 {lang === 'en' ? 'Comprehensive verification across all popular media hardware' : 'সকল ডিভাইসে নির্ভুল স্ট্রিমিং ও পারফরম্যান্স যাচাইকৃত'}
               </p>
             </div>
-            <span className="text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <span className="text-[11px] sm:text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
               {lang === 'en' ? 'Broadcasting Engine v3.8' : 'ব্রডকাস্টিং ইঞ্জিন ৩.৮'}
             </span>
           </div>
 
+          {/* Mobile Horizontal Scroll Indicator */}
+          <div className="sm:hidden px-4 py-1.5 bg-cyan-950/30 border-b border-slate-800 text-[11px] text-cyan-400 flex items-center justify-between">
+            <span>⇄ Swipe table horizontally</span>
+            <span className="text-slate-400 text-[10px]">4 columns</span>
+          </div>
+
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
+            <table className="w-full min-w-[540px] text-left text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-slate-800 bg-slate-900/40 text-slate-400">
-                  <th className="py-3.5 px-6 font-semibold">{lang === 'en' ? 'Platform Feature' : 'ফিচার'}</th>
-                  <th className="py-3.5 px-4 font-semibold text-center">Android TV</th>
-                  <th className="py-3.5 px-4 font-semibold text-center">Fire TV Stick</th>
-                  <th className="py-3.5 px-4 font-semibold text-center">Android Mobile</th>
-                  <th className="py-3.5 px-4 font-semibold text-center">TV Boxes</th>
+                  <th className="py-3 px-4 sm:px-6 font-semibold">{lang === 'en' ? 'Platform Feature' : 'ফিচার'}</th>
+                  <th className="py-3 px-3 sm:px-4 font-semibold text-center">Android TV</th>
+                  <th className="py-3 px-3 sm:px-4 font-semibold text-center">Fire TV Stick</th>
+                  <th className="py-3 px-3 sm:px-4 font-semibold text-center">Android Mobile</th>
+                  <th className="py-3 px-3 sm:px-4 font-semibold text-center">TV Boxes</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60 text-slate-300">
                 {compatibilityMatrix.map((item, idx) => (
                   <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="py-3.5 px-6 font-medium text-white">{item.feature}</td>
-                    <td className="py-3.5 px-4 text-center">
+                    <td className="py-3 px-4 sm:px-6 font-medium text-white">{item.feature}</td>
+                    <td className="py-3 px-3 sm:px-4 text-center">
                       {item.tv ? (
                         <CheckCircle2 className="w-4 h-4 text-emerald-400 mx-auto" />
                       ) : (
                         <span className="text-slate-600">-</span>
                       )}
                     </td>
-                    <td className="py-3.5 px-4 text-center">
+                    <td className="py-3 px-3 sm:px-4 text-center">
                       {item.firetv ? (
                         <CheckCircle2 className="w-4 h-4 text-emerald-400 mx-auto" />
                       ) : (
                         <span className="text-slate-600">-</span>
                       )}
                     </td>
-                    <td className="py-3.5 px-4 text-center">
+                    <td className="py-3 px-3 sm:px-4 text-center">
                       {item.mobile ? (
                         <CheckCircle2 className="w-4 h-4 text-emerald-400 mx-auto" />
                       ) : (
                         <span className="text-slate-600">-</span>
                       )}
                     </td>
-                    <td className="py-3.5 px-4 text-center">
+                    <td className="py-3 px-3 sm:px-4 text-center">
                       {item.box ? (
                         <CheckCircle2 className="w-4 h-4 text-emerald-400 mx-auto" />
                       ) : (

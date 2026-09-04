@@ -36,29 +36,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#06080d]/85 border-b border-slate-800/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
-            <a href="#" className="flex items-center gap-3 group">
-              <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 flex items-center justify-center p-0.5 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <a href="#" className="flex items-center gap-2.5 sm:gap-3 group">
+              <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 flex items-center justify-center p-0.5 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform shrink-0">
                 <div className="w-full h-full bg-[#090d16] rounded-[10px] flex items-center justify-center">
-                  <Tv className="w-6 h-6 text-cyan-400" />
+                  <Tv className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
                 </div>
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-[#090d16] animate-pulse" />
+                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-red-500 rounded-full border-2 border-[#090d16] animate-pulse" />
               </div>
               <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="font-extrabold text-xl sm:text-2xl text-white tracking-wider font-display">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="font-extrabold text-lg sm:text-2xl text-white tracking-wider font-display">
                     NRT <span className="text-cyan-400">STREAM</span>
                   </span>
                   <span className="hidden sm:inline-flex px-2 py-0.5 text-[10px] font-bold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-widest">
                     LIVE
                   </span>
                 </div>
-                <span className="text-[11px] text-slate-400 font-mono tracking-tight flex items-center gap-1">
-                  <Github className="w-3 h-3 text-slate-500" />
-                  <span>GitHub Release {CURRENT_RELEASE.version}</span>
+                <span className="text-[10px] sm:text-[11px] text-slate-400 font-mono tracking-tight flex items-center gap-1">
+                  <Github className="w-3 h-3 text-slate-500 shrink-0" />
+                  <span className="truncate">GitHub {CURRENT_RELEASE.version}</span>
                 </span>
               </div>
             </a>
@@ -117,16 +117,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
           <div className="flex sm:hidden items-center gap-2">
             <button
               onClick={onToggleLang}
-              className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 text-xs font-bold"
+              className="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 text-xs font-bold min-h-[38px] flex items-center justify-center"
             >
-              {lang === 'en' ? 'বাং' : 'EN'}
+              {lang === 'en' ? 'বাংলা' : 'EN'}
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+              className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white min-h-[38px] min-w-[38px] flex items-center justify-center"
               aria-label="Toggle Navigation"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
@@ -136,31 +136,42 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-slate-800 bg-[#090d16]/95 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60 font-medium text-sm transition-colors"
+                className="px-3 py-2.5 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60 font-medium text-sm transition-colors"
               >
                 {link.name}
               </a>
             ))}
           </div>
 
-          <div className="pt-2 border-t border-slate-800 flex flex-col gap-2">
+          <div className="pt-3 border-t border-slate-800 flex flex-col gap-2.5">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenDownload();
               }}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold text-sm shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold text-sm shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2 min-h-[44px]"
             >
               <Download className="w-4 h-4" />
               <span>{lang === 'en' ? 'Download NRT STREAM APK' : 'NRT STREAM APK ডাউনলোড'}</span>
               <span className="text-xs font-mono opacity-80">({CURRENT_RELEASE.fileSize})</span>
             </button>
+
+            <a
+              href={CURRENT_RELEASE.releasesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold flex items-center justify-center gap-2 min-h-[40px]"
+            >
+              <Github className="w-4 h-4 text-cyan-400" />
+              <span>abukayuum/NRT-Live-Stream-APK Releases</span>
+              <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
+            </a>
           </div>
         </div>
       )}

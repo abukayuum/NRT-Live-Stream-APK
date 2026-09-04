@@ -2,5 +2,7 @@
   "name": "NRT STREAM",
   "description": "Official portal for NRT STREAM Live TV & Sports Server. Download official APK for Android TV, Fire TV, and all Android devices with 4K zero-buffer worldwide streams via GitHub Releases.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

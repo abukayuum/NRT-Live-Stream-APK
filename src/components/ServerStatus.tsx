@@ -47,7 +47,7 @@ export const ServerStatus: React.FC<ServerStatusProps> = ({ lang }) => {
   }, []);
 
   return (
-    <section id="servers" className="py-20 bg-[#06080d] relative overflow-hidden">
+    <section id="servers" className="py-12 sm:py-20 bg-[#06080d] relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
@@ -55,14 +55,14 @@ export const ServerStatus: React.FC<ServerStatusProps> = ({ lang }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="max-w-2xl space-y-3">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-5 sm:gap-6">
+          <div className="max-w-2xl space-y-2.5 sm:space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
               <Server className="w-3.5 h-3.5" />
               {lang === 'en' ? 'Live TV Server Infrastructure' : 'লাইভ টিভি সার্ভার নেটওয়ার্ক'}
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white font-display">
               {lang === 'en' ? (
                 <>High-Bandwidth <span className="text-cyan-400">Global Server</span> Clusters</>
               ) : (
@@ -70,7 +70,7 @@ export const ServerStatus: React.FC<ServerStatusProps> = ({ lang }) => {
               )}
             </h2>
 
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
               {lang === 'en'
                 ? 'NRT STREAM connects you directly to dedicated low-latency live broadcast servers with built-in multi-server failover. If one stream source experiences network jitter, your app switches seamlessly in milliseconds.'
                 : 'NRT STREAM-এ যুক্ত করা হয়েছে একাধিক হাই-স্পিড সার্ভার। খেলার সময় লাখ লাখ দর্শক একসাথে দেখলেও আমাদের অটো-ফেলওভার ইঞ্জিনের কারণে কোনো বাফারিং বা ড্রপ হয় না।'
@@ -79,17 +79,17 @@ export const ServerStatus: React.FC<ServerStatusProps> = ({ lang }) => {
           </div>
 
           {/* Quick Metrics Badge */}
-          <div className="flex items-center gap-3">
-            <div className="px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-right">
-              <div className="text-xs text-slate-400">{lang === 'en' ? 'Active Global Viewers' : 'সক্রিয় দর্শক সংখ্যা'}</div>
-              <div className="text-xl font-bold font-mono text-cyan-400">
+          <div className="flex items-center justify-between sm:justify-start gap-3 w-full sm:w-auto">
+            <div className="flex-1 sm:flex-initial px-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-left sm:text-right">
+              <div className="text-[11px] sm:text-xs text-slate-400">{lang === 'en' ? 'Active Global Viewers' : 'সক্রিয় দর্শক সংখ্যা'}</div>
+              <div className="text-lg sm:text-xl font-bold font-mono text-cyan-400">
                 {totalStreams.toLocaleString()}
               </div>
             </div>
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
-              className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-slate-300 hover:text-white transition-all shadow-sm"
+              className="p-3 sm:p-3.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-slate-300 hover:text-white transition-all shadow-sm shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
               title="Refresh Server Node Ping"
             >
               <RefreshCw className={`w-5 h-5 ${isRefreshing ? 'animate-spin text-cyan-400' : ''}`} />
@@ -98,7 +98,7 @@ export const ServerStatus: React.FC<ServerStatusProps> = ({ lang }) => {
         </div>
 
         {/* Server Nodes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8 sm:mb-12">
           {servers.map((srv) => (
             <div
               key={srv.id}
@@ -187,36 +187,36 @@ export const ServerStatus: React.FC<ServerStatusProps> = ({ lang }) => {
         </div>
 
         {/* Technical Highlights Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-[#090d16] border border-slate-800 text-center">
-          <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono text-cyan-400">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-[#090d16] border border-slate-800 text-center">
+          <div className="p-2 sm:p-0">
+            <div className="text-xl sm:text-3xl font-extrabold text-white font-mono text-cyan-400">
               185+
             </div>
-            <div className="text-xs text-slate-400 mt-1">
+            <div className="text-[11px] sm:text-xs text-slate-400 mt-0.5 sm:mt-1">
               {lang === 'en' ? 'Global CDN Relays' : 'গ্লোবাল সিডিএন এজ'}
             </div>
           </div>
-          <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono text-cyan-400">
+          <div className="p-2 sm:p-0">
+            <div className="text-xl sm:text-3xl font-extrabold text-white font-mono text-cyan-400">
               &lt; 3.2s
             </div>
-            <div className="text-xs text-slate-400 mt-1">
+            <div className="text-[11px] sm:text-xs text-slate-400 mt-0.5 sm:mt-1">
               {lang === 'en' ? 'Ultra-Low Live Latency' : 'লাইভ লেটেন্সি স্পিড'}
             </div>
           </div>
-          <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono text-cyan-400">
+          <div className="p-2 sm:p-0">
+            <div className="text-xl sm:text-3xl font-extrabold text-white font-mono text-cyan-400">
               HEVC/H.265
             </div>
-            <div className="text-xs text-slate-400 mt-1">
+            <div className="text-[11px] sm:text-xs text-slate-400 mt-0.5 sm:mt-1">
               {lang === 'en' ? '50% Lower Data Usage' : 'অর্ধেক ডেটা খরচ'}
             </div>
           </div>
-          <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono text-cyan-400">
+          <div className="p-2 sm:p-0">
+            <div className="text-xl sm:text-3xl font-extrabold text-white font-mono text-cyan-400">
               100% Free
             </div>
-            <div className="text-xs text-slate-400 mt-1">
+            <div className="text-[11px] sm:text-xs text-slate-400 mt-0.5 sm:mt-1">
               {lang === 'en' ? 'No Subscriptions Required' : 'কোনো ফি প্রয়োজন নেই'}
             </div>
           </div>

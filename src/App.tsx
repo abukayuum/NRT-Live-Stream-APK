@@ -50,14 +50,14 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#06080d] text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-black font-sans">
       
-      {/* Top Banner Notice for Custom Domain */}
+      {/* Top Banner Notice */}
       <div className="bg-gradient-to-r from-cyan-950/70 via-blue-950/60 to-slate-900 border-b border-cyan-500/20 py-2 px-4 text-center text-xs">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap text-slate-300">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span>
             {lang === 'en' 
-              ? `Official Portal for NRT STREAM on ${CURRENT_RELEASE.domain} • 4K Live Sports & Global TV Server` 
-              : `NRT STREAM অফিসিয়াল পোর্টাল • ${CURRENT_RELEASE.domain} • ৪কে লাইভ টিভি ও স্পোর্টস সার্ভার`}
+              ? `Official NRT STREAM ${CURRENT_RELEASE.version} is Live on GitHub Releases • 4K Live Sports & Global TV Server` 
+              : `NRT STREAM অফিসিয়াল ${CURRENT_RELEASE.version} গিটহাবে লাইভ • ৪কে লাইভ টিভি ও স্পোর্টস সার্ভার`}
           </span>
           <button
             onClick={() => setDownloadModalOpen(true)}

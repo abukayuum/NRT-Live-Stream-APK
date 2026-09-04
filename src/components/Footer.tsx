@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tv, ShieldCheck, Heart, ExternalLink, Globe, Sparkles } from 'lucide-react';
+import { Tv, ShieldCheck, Heart, ExternalLink, Globe, Sparkles, Github } from 'lucide-react';
 import { CURRENT_RELEASE } from '../data/channels';
 
 interface FooterProps {
@@ -14,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDownload, lang }) => {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           
-          {/* Col 1: Brand & Domain */}
+          {/* Col 1: Brand & GitHub */}
           <div className="space-y-4 md:col-span-2">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-black font-extrabold shadow-md shadow-cyan-500/20">
@@ -38,13 +38,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDownload, lang }) => {
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px]">
-                <Globe className="w-3.5 h-3.5 text-cyan-400" />
-                {CURRENT_RELEASE.domain}
-              </span>
+              <a
+                href={CURRENT_RELEASE.githubRepo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 font-mono text-[11px] transition-colors"
+              >
+                <Github className="w-3.5 h-3.5 text-cyan-400" />
+                <span>abukayuum/NRT-Live-Stream-APK</span>
+                <ExternalLink className="w-3 h-3 text-slate-500" />
+              </a>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-950/30 border border-emerald-500/20 text-emerald-400 text-[11px] font-medium">
                 <ShieldCheck className="w-3.5 h-3.5" />
-                Vercel Edge Ready
+                GitHub Verified Release
               </span>
             </div>
           </div>
@@ -80,6 +86,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDownload, lang }) => {
               >
                 {lang === 'en' ? 'Download APK Now' : 'APK নামিয়ে নিন'}
               </button>
+              <a
+                href={CURRENT_RELEASE.releasesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center text-[11px] text-slate-400 hover:text-cyan-300 pt-1 transition-colors"
+              >
+                {lang === 'en' ? 'View all releases on GitHub →' : 'সব গিটহাব রিলিজ দেখুন →'}
+              </a>
             </div>
           </div>
 
@@ -88,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDownload, lang }) => {
         {/* Disclaimer & Copyright */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left text-[11px] text-slate-500">
           <p>
-            © {new Date().getFullYear()} NRT STREAM • Powered by <span className="text-slate-300 font-mono">{CURRENT_RELEASE.domain}</span>. All rights reserved.
+            © {new Date().getFullYear()} NRT STREAM • Official Live TV & Global Sports Broadcasting Server Client.
           </p>
           <div className="flex items-center gap-4">
             <span className="hover:text-slate-400 transition-colors">DMCA Compliance</span>

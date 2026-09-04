@@ -1,22 +1,27 @@
 import { Channel, AppRelease } from '../types';
 
 export const CURRENT_RELEASE: AppRelease = {
-  version: 'v3.8.4',
+  version: 'v2.0',
   releaseDate: 'September 2026',
-  fileSize: '18.6 MB',
+  fileSize: '20.6 MB',
+  fileName: 'NRT.STREAM_2.0.apk',
   minAndroid: 'Android 7.0 (Nougat) or higher',
-  recommendedAndroid: 'Android 10 - Android 15+ (incl. Android TV 14)',
+  recommendedAndroid: 'Android 10 - Android 15+ (incl. Android TV 14/15)',
   downloaderCode: '984210',
-  sha256: '9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e',
-  domain: 'premium-method.com',
-  downloadUrl: 'https://premium-method.com/downloads/NRT-STREAM-v3.8.4.apk',
+  sha256: '0465bbb3de721762c55974e6e340cf3b381b18fe50f905567062bdf84b8313b2',
+  githubRepo: 'https://github.com/abukayuum/NRT-Live-Stream-APK',
+  releasesUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases',
+  latestReleaseUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases/latest',
+  directApkUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases/download/2.0/NRT.STREAM_2.0.apk',
+  downloadUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases/download/2.0/NRT.STREAM_2.0.apk',
   changelog: [
+    'Official GitHub Release v2.0 with enhanced broadcasting stability',
     'Integrated Multi-Server Auto-Fallback engine for zero buffering',
     'Full hardware acceleration support for Android TV remote controls (D-Pad)',
     'Ultra-low latency live sports synchronization (under 3 seconds delay)',
     'Added 4K 60FPS HEVC/H.265 playback profile for high-end Smart TVs',
-    'Optimized memory usage for entry-level Android TV Sticks and 1GB RAM boxes',
-    'Custom player buffer controls for high-speed & slow 3G/4G connections'
+    'Optimized memory footprint for entry-level Android TV Sticks and 1GB RAM boxes',
+    'Custom player buffer controls for high-speed & mobile 3G/4G/5G connections'
   ]
 };
 

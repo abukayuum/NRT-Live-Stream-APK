@@ -41,8 +41,8 @@ export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang
       step: '02',
       title: lang === 'en' ? `Enter Code: ${CURRENT_RELEASE.downloaderCode}` : `কোড দিন: ${CURRENT_RELEASE.downloaderCode}`,
       desc: lang === 'en' 
-        ? `Open Downloader, type code ${CURRENT_RELEASE.downloaderCode} (or ${CURRENT_RELEASE.domain}/tv) into the URL field and press GO.` 
-        : `Downloader অ্যাপে গিয়ে কোড ${CURRENT_RELEASE.downloaderCode} অথবা ${CURRENT_RELEASE.domain}/tv লিখে GO চাপুন।`
+        ? `Open Downloader, type code ${CURRENT_RELEASE.downloaderCode} into the URL field and press GO.` 
+        : `Downloader অ্যাপে গিয়ে কোড ${CURRENT_RELEASE.downloaderCode} লিখে GO চাপুন।`
     },
     {
       step: '03',
@@ -82,8 +82,8 @@ export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang
       step: '01',
       title: lang === 'en' ? 'Download Official APK' : 'অফিসিয়াল APK ডাউনলোড করুন',
       desc: lang === 'en'
-        ? `Click the Download APK button on ${CURRENT_RELEASE.domain} to save NRT-STREAM-${CURRENT_RELEASE.version}.apk on your phone.`
-        : `${CURRENT_RELEASE.domain} সাইট থেকে সরাসরি ডাউনলোড বাটনে ক্লিক করে APK ফাইলটি নামিয়ে নিন।`
+        ? `Click the Download APK button to save ${CURRENT_RELEASE.fileName} (${CURRENT_RELEASE.fileSize}) directly from GitHub Releases.`
+        : `সরাসরি ডাউনলোড বাটনে ক্লিক করে গিটহাব রিলিজ থেকে ${CURRENT_RELEASE.fileName} ফাইলটি নামিয়ে নিন।`
     },
     {
       step: '02',
@@ -221,12 +221,12 @@ export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang
             </div>
             <div>
               <h4 className="font-bold text-white text-base">
-                {lang === 'en' ? 'Need Help or Direct APK Link?' : 'সরাসরি APK ফাইল ডাউনলোড করতে চান?'}
+                {lang === 'en' ? 'Need Direct APK Download?' : 'সরাসরি APK ফাইল ডাউনলোড করতে চান?'}
               </h4>
               <p className="text-xs text-slate-400 mt-0.5">
                 {lang === 'en' 
-                  ? `Download directly from https://${CURRENT_RELEASE.domain} or transfer via USB drive.` 
-                  : `আমাদের ডোমেন https://${CURRENT_RELEASE.domain} থেকে যেকোনো সময় নতুন সংস্করণ ডাউনলোড করতে পারেন।`}
+                  ? `Download ${CURRENT_RELEASE.fileName} (${CURRENT_RELEASE.fileSize}) directly from official GitHub Releases.` 
+                  : `আমাদের অফিসিয়াল গিটহাব রিলিজ থেকে যেকোনো সময় সরাসরি নতুন APK সংস্করণটি নামিয়ে নিতে পারেন।`}
               </p>
             </div>
           </div>

@@ -86,7 +86,7 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ lang }) => {
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             {lang === 'en'
-              ? 'Built from the ground up for stability, speed, and cross-device adaptability on premium-method.com.'
+              ? 'Built from the ground up for stability, speed, and seamless cross-device adaptability across Android ecosystem.'
               : 'সব টিভি সার্ভার এবং বিশ্বের সেরা স্পোর্টস চ্যানেল এক ছাদের নিচে দেখার সবচেয়ে নির্ভরযোগ্য সমাধান।'
             }
           </p>

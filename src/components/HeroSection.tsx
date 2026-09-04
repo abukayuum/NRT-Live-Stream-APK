@@ -53,12 +53,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenDownload, lang }
             </span>
             <span className="text-xs sm:text-sm font-semibold text-cyan-300">
               {lang === 'en' 
-                ? `Official Live TV Server Hub on ${CURRENT_RELEASE.domain}`
-                : `অফিসিয়াল লাইভ টিভি সার্ভার হাব • ${CURRENT_RELEASE.domain}`}
+                ? `Official GitHub Release • NRT STREAM ${CURRENT_RELEASE.version}`
+                : `অফিসিয়াল গিটহাব রিলিজ • NRT STREAM ${CURRENT_RELEASE.version}`}
             </span>
             <span className="text-slate-500">|</span>
-            <span className="text-xs font-mono text-slate-300">
-              v{CURRENT_RELEASE.version.replace('v', '')} Release
+            <span className="text-xs font-mono text-emerald-400 flex items-center gap-1 font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              Verified APK
             </span>
           </div>
 

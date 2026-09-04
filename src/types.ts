@@ -34,11 +34,15 @@ export interface AppRelease {
   version: string;
   releaseDate: string;
   fileSize: string;
+  fileName: string;
   minAndroid: string;
   recommendedAndroid: string;
   downloaderCode: string;
   sha256: string;
-  domain: string;
+  githubRepo: string;
+  releasesUrl: string;
+  latestReleaseUrl: string;
+  directApkUrl: string;
   downloadUrl: string;
   changelog: string[];
 }

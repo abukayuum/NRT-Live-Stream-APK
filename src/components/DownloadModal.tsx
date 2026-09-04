@@ -11,7 +11,8 @@ import {
   ExternalLink,
   Server,
   Sparkles,
-  Info
+  Info,
+  Github
 } from 'lucide-react';
 import { CURRENT_RELEASE } from '../data/channels';
 
@@ -44,30 +45,19 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose, l
   const handleDownloadTrigger = () => {
     setDownloading(true);
 
-    // Create a real downloadable dummy APK package payload for realistic browser download
+    // Direct trigger to download real APK release from GitHub releases
+    const a = document.createElement('a');
+    a.href = CURRENT_RELEASE.directApkUrl;
+    a.download = CURRENT_RELEASE.fileName;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
     setTimeout(() => {
-      const packageContent = `NRT STREAM - High-Performance Live TV & Sports Server Client
-Release: ${CURRENT_RELEASE.version}
-Target Domain: ${CURRENT_RELEASE.domain}
-Architecture: Universal (armeabi-v7a, arm64-v8a, x86, x86_64)
-Min Android: ${CURRENT_RELEASE.minAndroid}
-Supported Platforms: Android TV, Google TV, Fire TV Stick, Android Smartphones, Tablets
-Servers Configured: Multi-Server Failover Active (US, EU, SG, SA, ME Edge)
-Official Downloader Code: ${CURRENT_RELEASE.downloaderCode}
-
-Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
-
-      const blob = new Blob([packageContent], { type: 'application/vnd.android.package-archive' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `NRT-STREAM-${CURRENT_RELEASE.version}.apk`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
       setDownloading(false);
-    }, 900);
+    }, 1000);
   };
 
   return (
@@ -89,10 +79,9 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
                   {CURRENT_RELEASE.version}
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
-                {lang === 'en' 
-                  ? 'Official release via premium-method.com' 
-                  : 'অফিসিয়াল রিলিজ • premium-method.com'}
+              <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
+                <Github className="w-3 h-3 text-cyan-400" />
+                <span>abukayuum/NRT-Live-Stream-APK (Release 2.0)</span>
               </p>
             </div>
           </div>
@@ -176,7 +165,7 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
                 </div>
                 <ol className="list-decimal list-inside space-y-1.5 text-slate-300">
                   <li>{lang === 'en' ? 'Open Downloader on Firestick or Google/Android TV' : 'আপনার টিভি বা ফায়ারস্টিকে Downloader অ্যাপটি ওপেন করুন'}</li>
-                  <li>{lang === 'en' ? `Enter code ${CURRENT_RELEASE.downloaderCode} or URL: premium-method.com/tv` : `কোড ${CURRENT_RELEASE.downloaderCode} অথবা premium-method.com/tv লিখুন`}</li>
+                  <li>{lang === 'en' ? `Enter Downloader Code ${CURRENT_RELEASE.downloaderCode}` : `Downloader কোড ${CURRENT_RELEASE.downloaderCode} লিখুন`}</li>
                   <li>{lang === 'en' ? 'Press GO and click Install when download finishes' : 'GO চাপুন এবং ডাউনলোড শেষে Install বাটনে ক্লিক করুন'}</li>
                 </ol>
               </div>
@@ -187,8 +176,8 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
             <div className="space-y-4">
               <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
                 <div className="flex items-center justify-between text-xs text-slate-400">
-                  <span>File: NRT-STREAM-{CURRENT_RELEASE.version}.apk</span>
-                  <span className="text-cyan-400 font-medium">Size: {CURRENT_RELEASE.fileSize}</span>
+                  <span className="font-mono text-cyan-300 font-semibold">{CURRENT_RELEASE.fileName}</span>
+                  <span className="text-emerald-400 font-mono font-medium">Size: {CURRENT_RELEASE.fileSize}</span>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
@@ -199,21 +188,32 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
                   >
                     <Download className={`w-4 h-4 ${downloading ? 'animate-bounce' : ''}`} />
                     {downloading 
-                      ? (lang === 'en' ? 'Downloading Package...' : 'ডাউনলোড শুরু হচ্ছে...') 
-                      : (lang === 'en' ? `Direct APK Download (${CURRENT_RELEASE.fileSize})` : `সরাসরি APK ডাউনলোড (${CURRENT_RELEASE.fileSize})`)}
+                      ? (lang === 'en' ? 'Starting Download...' : 'ডাউনলোড শুরু হচ্ছে...') 
+                      : (lang === 'en' ? `Download APK (${CURRENT_RELEASE.fileSize})` : `সরাসরি APK ডাউনলোড (${CURRENT_RELEASE.fileSize})`)}
                   </button>
+
+                  <a
+                    href={CURRENT_RELEASE.releasesUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-sm transition-all border border-slate-700"
+                  >
+                    <Github className="w-4 h-4 text-cyan-400" />
+                    <span>GitHub Releases</span>
+                    <ExternalLink className="w-3 h-3 text-slate-400" />
+                  </a>
                 </div>
 
                 <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-xs text-slate-400">
-                  <span className="font-mono text-slate-300 truncate max-w-[280px]">
-                    https://{CURRENT_RELEASE.domain}/downloads/NRT-STREAM.apk
+                  <span className="font-mono text-slate-300 truncate max-w-[260px] sm:max-w-md">
+                    {CURRENT_RELEASE.directApkUrl}
                   </span>
                   <button
-                    onClick={() => handleCopy(`https://${CURRENT_RELEASE.domain}/downloads/NRT-STREAM.apk`, 'url')}
-                    className="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1"
+                    onClick={() => handleCopy(CURRENT_RELEASE.directApkUrl, 'url')}
+                    className="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 shrink-0 ml-2"
                   >
-                    {copiedUrl ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                    {copiedUrl ? 'Copied' : 'Copy URL'}
+                    {copiedUrl ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                    {copiedUrl ? 'Copied' : 'Copy Link'}
                   </button>
                 </div>
               </div>
@@ -281,8 +281,8 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
                 </h4>
                 <p className="text-xs text-slate-400 mt-1 max-w-sm">
                   {lang === 'en' 
-                    ? `Open phone camera and point at the QR code to load https://${CURRENT_RELEASE.domain}/download`
-                    : `ফোনের ক্যামেরা ওপেন করে কিউআর কোডটি স্ক্যান করুন এবং সহজেই অ্যাপটি নামিয়ে নিন`}
+                    ? 'Point your phone camera at the QR code to open the official GitHub Release and download the APK'
+                    : 'ফোনের ক্যামেরা দিয়ে কিউআর কোডটি স্ক্যান করে গিটহাব রিলিজ থেকে সরাসরি APK নামিয়ে নিন'}
                 </p>
               </div>
             </div>
@@ -293,9 +293,9 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
             <div className="flex items-center justify-between text-xs text-slate-400">
               <span className="flex items-center gap-1 font-medium text-slate-300">
                 <Server className="w-3.5 h-3.5 text-cyan-400" />
-                {lang === 'en' ? 'CDN Download Mirror:' : 'ডাউনলোড মিরর সার্ভার:'}
+                {lang === 'en' ? 'CDN Download Network:' : 'ডাউনলোড নেটওয়ার্ক:'}
               </span>
-              <span className="text-emerald-400 font-medium">All Fast 10 Gbps Nodes</span>
+              <span className="text-emerald-400 font-medium">GitHub Release Assets • 10 Gbps</span>
             </div>
             <div className="grid grid-cols-3 gap-2 text-xs">
               <button
@@ -306,8 +306,8 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
                     : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700'
                 }`}
               >
-                <div>Mirror 1 (Global/US)</div>
-                <div className="text-[10px] text-slate-500 mt-0.5">Ping ~14ms</div>
+                <div>Mirror 1 (GitHub CDN)</div>
+                <div className="text-[10px] text-slate-500 mt-0.5">Primary Node</div>
               </button>
               <button
                 onClick={() => setSelectedMirror('sg')}
@@ -317,8 +317,8 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
                     : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700'
                 }`}
               >
-                <div>Mirror 2 (Asia SG)</div>
-                <div className="text-[10px] text-slate-500 mt-0.5">Ping ~18ms</div>
+                <div>Mirror 2 (Asia Edge)</div>
+                <div className="text-[10px] text-slate-500 mt-0.5">Fast Route</div>
               </button>
               <button
                 onClick={() => setSelectedMirror('eu')}
@@ -328,8 +328,8 @@ Thank you for choosing NRT STREAM on ${CURRENT_RELEASE.domain}!`;
                     : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700'
                 }`}
               >
-                <div>Mirror 3 (Europe EU)</div>
-                <div className="text-[10px] text-slate-500 mt-0.5">Ping ~21ms</div>
+                <div>Mirror 3 (Global Edge)</div>
+                <div className="text-[10px] text-slate-500 mt-0.5">Redundant Node</div>
               </button>
             </div>
           </div>

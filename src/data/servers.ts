@@ -69,8 +69,8 @@ export const FAQ_DATA: FaqItem[] = [
   {
     question: 'How do I install NRT STREAM on Android TV or Firestick?',
     questionBn: 'Android TV অথবা Firestick-এ NRT STREAM কীভাবে ইনস্টল করব?',
-    answer: 'Simply install the "Downloader" app from your TV Play Store or Amazon AppStore, open Downloader, type the Downloader Code 984210 (or visit premium-method.com), and click Go. The APK will automatically download and prompt you to install. No USB drive required!',
-    answerBn: 'আপনার টিভি বা ফায়ারস্টিকে "Downloader" অ্যাপটি অপেন করুন, কোড ৯৮৪২১০ (984210) অথবা premium-method.com লিখে সার্চ করুন। অ্যাপটি সরাসরি ডাউনলোড হয়ে ইনস্টল হয়ে যাবে।',
+    answer: 'Simply install the "Downloader" app from your TV Play Store or Amazon AppStore, open Downloader, type the Downloader Code 984210 (or visit our official GitHub releases), and click Go. The APK will automatically download and prompt you to install. No USB drive required!',
+    answerBn: 'আপনার টিভি বা ফায়ারস্টিকে "Downloader" অ্যাপটি অপেন করুন, কোড ৯৮৪২১০ (984210) লিখুন অথবা গিটহাব রিলিজ থেকে সরাসরি ডাউনলোড করুন। অ্যাপটি সরাসরি ডাউনলোড হয়ে ইনস্টল হয়ে যাবে।',
     category: 'installation'
   },
   {
@@ -88,17 +88,17 @@ export const FAQ_DATA: FaqItem[] = [
     category: 'servers'
   },
   {
-    question: 'Is the APK safe to download from premium-method.com?',
-    questionBn: 'premium-method.com থেকে এই APK ডাউনলোড করা কি নিরাপদ?',
-    answer: '100% safe and verified. The APK is clean, does not require root access, contains no intrusive ad-trackers, and is hosted on encrypted Vercel Edge infrastructure under our custom domain premium-method.com.',
-    answerBn: 'শতভাগ নিরাপদ ও ভেরিফাইড। এতে কোনো রুট অ্যাক্সেস দরকার নেই, ম্যালওয়্যার নেই। আমাদের অফিসিয়াল ডোমেন premium-method.com থেকে নিরাপদে ডাউনলোড করা যায়।',
+    question: 'Is the APK safe to download from GitHub Releases?',
+    questionBn: 'GitHub Releases থেকে এই APK ডাউনলোড করা কি নিরাপদ?',
+    answer: '100% safe, verified, and secure. The APK package is clean, does not require root access, contains zero intrusive ad-trackers, and is distributed directly via the official GitHub repository (abukayuum/NRT-Live-Stream-APK) with SHA-256 integrity checksums.',
+    answerBn: 'শতভাগ নিরাপদ ও ভেরিফাইড। এতে কোনো রুট অ্যাক্সেস দরকার নেই, ম্যালওয়্যার নেই। আমাদের অফিসিয়াল গিটহাব রিপোজিটরি (abukayuum/NRT-Live-Stream-APK) থেকে সরাসরি নিরাপদ রিলিজ নামিয়ে নিতে পারেন।',
     category: 'general'
   },
   {
     question: 'Is NRT STREAM ready for Vercel deployment?',
-    questionBn: 'এটি কি Vercel এবং কাস্টম ডোমেন premium-method.com এর জন্য অপ্টিমাইজড?',
-    answer: 'Yes, this landing page is pre-configured and optimized for 1-click Vercel deployment with instant SSL certificate mapping to premium-method.com, lightning-fast edge static caching, and ultra-high Lighthouse scores.',
-    answerBn: 'হ্যাঁ, এই পুরো ল্যান্ডিং পেজটি Vercel-এ ১-ক্লিকে ডিপ্লয় করার জন্য এবং কাস্টম ডোমেন premium-method.com এর সাথে সম্পূর্ণ সুরক্ষিত SSL সহ চলার জন্য অপ্টিমাইজ করা।',
+    questionBn: 'এই পোর্টালটি কি Vercel-এ হোস্ট করার জন্য প্রস্তুত?',
+    answer: 'Yes, this landing page is pre-configured and optimized for 1-click Vercel deployment with lightning-fast edge static delivery, zero-lag asset routing, and responsive viewing across all devices.',
+    answerBn: 'হ্যাঁ, এই পুরো ল্যান্ডিং পেজটি Vercel-এ ১-ক্লিকে ডিপ্লয় করার জন্য প্রস্তুত এবং আল্ট্রা-ফাস্ট এজ ডেলিভারির সাথে নির্বিঘ্নে কাজ করে।',
     category: 'troubleshooting'
   }
 ];

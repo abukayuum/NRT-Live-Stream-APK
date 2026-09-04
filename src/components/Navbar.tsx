@@ -9,7 +9,9 @@ import {
   Smartphone, 
   Radio, 
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  Github,
+  ExternalLink
 } from 'lucide-react';
 import { CURRENT_RELEASE } from '../data/channels';
 
@@ -54,8 +56,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
                     LIVE
                   </span>
                 </div>
-                <span className="text-[11px] text-slate-400 font-mono tracking-tight">
-                  {CURRENT_RELEASE.domain}
+                <span className="text-[11px] text-slate-400 font-mono tracking-tight flex items-center gap-1">
+                  <Github className="w-3 h-3 text-slate-500" />
+                  <span>GitHub Release {CURRENT_RELEASE.version}</span>
                 </span>
               </div>
             </a>
@@ -75,8 +78,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
             ))}
           </nav>
 
-          {/* Actions: Lang Toggle + Download Button */}
+          {/* Actions: Lang Toggle + GitHub Repo + Download Button */}
           <div className="hidden sm:flex items-center gap-3">
+            <a
+              href={CURRENT_RELEASE.releasesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-slate-700 transition-all"
+              title="View GitHub Releases"
+            >
+              <Github className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="hidden md:inline">GitHub Releases</span>
+              <ExternalLink className="w-3 h-3 text-slate-500" />
+            </a>
+
             <button
               onClick={onToggleLang}
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-slate-700 transition-all"

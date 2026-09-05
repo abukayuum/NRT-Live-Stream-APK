@@ -13,7 +13,7 @@ import {
   Github,
   ExternalLink
 } from 'lucide-react';
-import { CURRENT_RELEASE } from '../data/channels';
+import { useRelease } from '../context/ReleaseContext';
 
 interface NavbarProps {
   onOpenDownload: () => void;
@@ -23,6 +23,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLang }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { currentRelease, isLiveSynced } = useRelease();
 
   const navLinks = [
     { name: lang === 'en' ? 'Features' : 'বৈশিষ্ট্য', href: '#features' },
@@ -58,7 +59,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
                 </div>
                 <span className="text-[10px] sm:text-[11px] text-slate-400 font-mono tracking-tight flex items-center gap-1">
                   <Github className="w-3 h-3 text-slate-500 shrink-0" />
-                  <span className="truncate">GitHub {CURRENT_RELEASE.version}</span>
+                  <span className="truncate">GitHub {currentRelease.version}</span>
+                  {isLiveSynced && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" title="Synced with GitHub" />
+                  )}
                 </span>
               </div>
             </a>
@@ -81,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
           {/* Actions: Lang Toggle + GitHub Repo + Download Button */}
           <div className="hidden sm:flex items-center gap-3">
             <a
-              href={CURRENT_RELEASE.releasesUrl}
+              href={currentRelease.releasesUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-slate-700 transition-all"
@@ -108,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
               <Download className="w-4 h-4 text-black group-hover:translate-y-0.5 transition-transform" />
               <span>{lang === 'en' ? 'Download APK' : 'APK ডাউনলোড'}</span>
               <span className="text-[10px] bg-black/20 px-1.5 py-0.5 rounded font-mono">
-                {CURRENT_RELEASE.version}
+                {currentRelease.version}
               </span>
             </button>
           </div>
@@ -159,11 +163,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload, lang, onToggleLa
             >
               <Download className="w-4 h-4" />
               <span>{lang === 'en' ? 'Download NRT STREAM APK' : 'NRT STREAM APK ডাউনলোড'}</span>
-              <span className="text-xs font-mono opacity-80">({CURRENT_RELEASE.fileSize})</span>
+              <span className="text-xs font-mono opacity-80">({currentRelease.fileSize})</span>
             </button>
 
             <a
-              href={CURRENT_RELEASE.releasesUrl}
+              href={currentRelease.releasesUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold flex items-center justify-center gap-2 min-h-[40px]"

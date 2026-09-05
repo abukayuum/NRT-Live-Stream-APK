@@ -10,13 +10,14 @@ import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { DownloadModal } from './components/DownloadModal';
 import { Download, Tv, ArrowUp } from 'lucide-react';
-import { CURRENT_RELEASE } from './data/channels';
+import { ReleaseProvider, useRelease } from './context/ReleaseContext';
 
-export default function App() {
+function MainAppContent() {
   const [downloadModalOpen, setDownloadModalOpen] = useState(false);
   const [lang, setLang] = useState<'en' | 'bn'>('en');
   const [showFloatingBar, setShowFloatingBar] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const { currentRelease, isLiveSynced } = useRelease();
 
   // Monitor scroll for floating download bar and back to top
   useEffect(() => {
@@ -53,17 +54,20 @@ export default function App() {
       {/* Top Banner Notice */}
       <div className="bg-gradient-to-r from-cyan-950/70 via-blue-950/60 to-slate-900 border-b border-cyan-500/20 py-2 px-4 text-center text-xs">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap text-slate-300">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="flex h-2 w-2 relative shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
           <span>
             {lang === 'en' 
-              ? `Official NRT STREAM ${CURRENT_RELEASE.version} is Live on GitHub Releases • 4K Live Sports & Global TV Server` 
-              : `NRT STREAM অফিসিয়াল ${CURRENT_RELEASE.version} গিটহাবে লাইভ • ৪কে লাইভ টিভি ও স্পোর্টস সার্ভার`}
+              ? `Official NRT STREAM ${currentRelease.version} is Live on GitHub Releases • 4K Live Sports & Global TV Server` 
+              : `NRT STREAM অফিসিয়াল ${currentRelease.version} গিটহাবে লাইভ • ৪কে লাইভ টিভি ও স্পোর্টস সার্ভার`}
           </span>
           <button
             onClick={() => setDownloadModalOpen(true)}
-            className="text-cyan-400 hover:text-cyan-300 font-bold underline ml-1"
+            className="text-cyan-400 hover:text-cyan-300 font-bold underline ml-1 cursor-pointer"
           >
-            {lang === 'en' ? 'Download APK' : 'ডাউনলোড করুন'}
+            {lang === 'en' ? `Get APK (${currentRelease.fileSize})` : `${currentRelease.version} ডাউনলোড করুন`}
           </button>
         </div>
       </div>
@@ -125,11 +129,14 @@ export default function App() {
               <div className="text-xs font-bold text-white flex items-center gap-1.5 truncate">
                 <span>NRT STREAM</span>
                 <span className="text-[10px] text-cyan-400 font-mono shrink-0">
-                  {CURRENT_RELEASE.version}
+                  {currentRelease.version}
                 </span>
+                {isLiveSynced && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block shrink-0" title="Live Synced" />
+                )}
               </div>
               <div className="text-[10px] text-slate-400 font-mono truncate">
-                Code: <strong className="text-cyan-300">{CURRENT_RELEASE.downloaderCode}</strong>
+                Code: <strong className="text-cyan-300">{currentRelease.downloaderCode}</strong>
               </div>
             </div>
           </div>
@@ -140,7 +147,7 @@ export default function App() {
               className="px-3.5 sm:px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs shadow-md shadow-cyan-500/25 transition-all flex items-center gap-1.5 whitespace-nowrap min-h-[38px]"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>{lang === 'en' ? 'Get APK' : 'APK ডাউনলোড'}</span>
+              <span>{lang === 'en' ? `Get ${currentRelease.version}` : 'APK ডাউনলোড'}</span>
             </button>
           </div>
         </div>
@@ -158,5 +165,13 @@ export default function App() {
       )}
 
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ReleaseProvider>
+      <MainAppContent />
+    </ReleaseProvider>
   );
 }

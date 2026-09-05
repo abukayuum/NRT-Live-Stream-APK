@@ -1,27 +1,30 @@
 import { Channel, AppRelease } from '../types';
 
 export const CURRENT_RELEASE: AppRelease = {
-  version: 'v2.0',
-  releaseDate: 'September 2026',
-  fileSize: '20.6 MB',
-  fileName: 'NRT.STREAM_2.0.apk',
+  version: 'v3.0',
+  tagName: '3.0',
+  releaseDate: 'September 5, 2026',
+  publishedAt: '2026-09-05T17:35:48Z',
+  fileSize: '19.9 MB',
+  fileName: 'NRT.STREAM_3.0.apk',
   minAndroid: 'Android 7.0 (Nougat) or higher',
   recommendedAndroid: 'Android 10 - Android 15+ (incl. Android TV 14/15)',
   downloaderCode: '984210',
-  sha256: '0465bbb3de721762c55974e6e340cf3b381b18fe50f905567062bdf84b8313b2',
+  sha256: '5bf17705c98399b2717de590418c8b3d11e189e72a63ab230234b4be47b5c888',
   githubRepo: 'https://github.com/abukayuum/NRT-Live-Stream-APK',
   releasesUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases',
   latestReleaseUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases/latest',
-  directApkUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases/download/2.0/NRT.STREAM_2.0.apk',
-  downloadUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases/download/2.0/NRT.STREAM_2.0.apk',
+  directApkUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases/download/3.0/NRT.STREAM_3.0.apk',
+  downloadUrl: 'https://github.com/abukayuum/NRT-Live-Stream-APK/releases/download/3.0/NRT.STREAM_3.0.apk',
+  totalDownloads: 23,
   changelog: [
-    'Official GitHub Release v2.0 with enhanced broadcasting stability',
+    'App Updated - NRT STREAM 3.0 Latest Release',
+    'Bug fixes and critical playback stability improvements',
     'Integrated Multi-Server Auto-Fallback engine for zero buffering',
     'Full hardware acceleration support for Android TV remote controls (D-Pad)',
     'Ultra-low latency live sports synchronization (under 3 seconds delay)',
     'Added 4K 60FPS HEVC/H.265 playback profile for high-end Smart TVs',
-    'Optimized memory footprint for entry-level Android TV Sticks and 1GB RAM boxes',
-    'Custom player buffer controls for high-speed & mobile 3G/4G/5G connections'
+    'Optimized memory footprint for entry-level Android TV Sticks and 1GB RAM boxes'
   ]
 };
 

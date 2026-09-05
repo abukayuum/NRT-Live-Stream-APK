@@ -12,9 +12,10 @@ import {
   Smartphone, 
   Globe2,
   Server,
-  ArrowDown
+  ArrowDown,
+  Github
 } from 'lucide-react';
-import { CURRENT_RELEASE } from '../data/channels';
+import { useRelease } from '../context/ReleaseContext';
 import { TvInterfaceMockup } from './TvInterfaceMockup';
 
 interface HeroSectionProps {
@@ -24,9 +25,10 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenDownload, lang }) => {
   const [copiedCode, setCopiedCode] = useState(false);
+  const { currentRelease, isLiveSynced } = useRelease();
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(CURRENT_RELEASE.downloaderCode);
+    navigator.clipboard.writeText(currentRelease.downloaderCode);
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2000);
   };
@@ -53,14 +55,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenDownload, lang }
             </span>
             <span className="text-[11px] sm:text-sm font-semibold text-cyan-300">
               {lang === 'en' 
-                ? `Official GitHub Release • NRT STREAM ${CURRENT_RELEASE.version}`
-                : `অফিসিয়াল গিটহাব রিলিজ • NRT STREAM ${CURRENT_RELEASE.version}`}
+                ? `Official GitHub Release • NRT STREAM ${currentRelease.version}`
+                : `অফিসিয়াল গিটহাব রিলিজ • NRT STREAM ${currentRelease.version}`}
             </span>
             <span className="text-slate-500 hidden xs:inline">|</span>
             <span className="text-[10px] sm:text-xs font-mono text-emerald-400 flex items-center gap-1 font-semibold">
               <ShieldCheck className="w-3.5 h-3.5" />
               Verified APK
             </span>
+            {isLiveSynced && (
+              <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-semibold">
+                <Github className="w-3 h-3 text-cyan-400" />
+                Live Sync
+              </span>
+            )}
           </div>
 
           {/* Main Hero Headline */}
@@ -100,7 +108,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenDownload, lang }
               <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform shrink-0" />
               <span>{lang === 'en' ? 'Download APK Free' : 'ফ্রি APK ডাউনলোড করুন'}</span>
               <span className="text-xs bg-black/20 px-2 py-0.5 rounded-full font-mono font-normal">
-                {CURRENT_RELEASE.fileSize}
+                {currentRelease.fileSize}
               </span>
             </button>
 
@@ -113,7 +121,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenDownload, lang }
                     {lang === 'en' ? 'TV Downloader Code' : 'টিভির ডাউনলোডার কোড'}
                   </div>
                   <div className="text-base sm:text-lg font-extrabold text-white font-mono tracking-wider">
-                    {CURRENT_RELEASE.downloaderCode}
+                    {currentRelease.downloaderCode}
                   </div>
                 </div>
               </div>

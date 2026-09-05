@@ -30,6 +30,28 @@ export interface FaqItem {
   category: 'general' | 'installation' | 'troubleshooting' | 'servers';
 }
 
+export interface GitHubReleaseAsset {
+  id: number;
+  name: string;
+  size: number;
+  downloadCount: number;
+  browserDownloadUrl: string;
+  digest?: string;
+  updatedAt: string;
+}
+
+export interface GitHubReleaseItem {
+  id: number;
+  tagName: string;
+  name: string;
+  publishedAt: string;
+  createdAt: string;
+  body: string;
+  htmlUrl: string;
+  isPrerelease: boolean;
+  apkAsset?: GitHubReleaseAsset;
+}
+
 export interface AppRelease {
   version: string;
   releaseDate: string;
@@ -45,4 +67,8 @@ export interface AppRelease {
   directApkUrl: string;
   downloadUrl: string;
   changelog: string[];
+  totalDownloads?: number;
+  tagName?: string;
+  publishedAt?: string;
+  isLiveSynced?: boolean;
 }

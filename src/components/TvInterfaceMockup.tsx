@@ -15,13 +15,14 @@ import {
   ChevronRight,
   Maximize2
 } from 'lucide-react';
-import { CURRENT_RELEASE } from '../data/channels';
+import { useRelease } from '../context/ReleaseContext';
 
 interface TvInterfaceMockupProps {
   lang: 'en' | 'bn';
 }
 
 export const TvInterfaceMockup: React.FC<TvInterfaceMockupProps> = ({ lang }) => {
+  const { currentRelease } = useRelease();
   const [activeChannelIdx, setActiveChannelIdx] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [matchMinutes, setMatchMinutes] = useState(74);
@@ -107,7 +108,7 @@ export const TvInterfaceMockup: React.FC<TvInterfaceMockupProps> = ({ lang }) =>
             <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-cyan-500/40 text-cyan-400 font-bold text-xs">
               <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-red-500 animate-ping" />
               <span>NRT STREAM</span>
-              <span className="text-[10px] text-slate-400 font-normal ml-0.5 sm:ml-1">{CURRENT_RELEASE.version}</span>
+              <span className="text-[10px] text-slate-400 font-normal ml-0.5 sm:ml-1">{currentRelease.version}</span>
             </div>
             <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-slate-700 text-slate-300">
               <Radio className="w-3.5 h-3.5 text-cyan-400" />

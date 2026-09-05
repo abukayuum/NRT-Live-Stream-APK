@@ -12,7 +12,7 @@ import {
   CheckCircle2,
   ExternalLink
 } from 'lucide-react';
-import { CURRENT_RELEASE } from '../data/channels';
+import { useRelease } from '../context/ReleaseContext';
 
 interface InstallGuideProps {
   onOpenDownload: () => void;
@@ -22,9 +22,10 @@ interface InstallGuideProps {
 export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang }) => {
   const [activeTab, setActiveTab] = useState<'tv' | 'firestick' | 'mobile'>('tv');
   const [copiedCode, setCopiedCode] = useState(false);
+  const { currentRelease } = useRelease();
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(CURRENT_RELEASE.downloaderCode);
+    navigator.clipboard.writeText(currentRelease.downloaderCode);
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2000);
   };
@@ -39,10 +40,10 @@ export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang
     },
     {
       step: '02',
-      title: lang === 'en' ? `Enter Code: ${CURRENT_RELEASE.downloaderCode}` : `কোড দিন: ${CURRENT_RELEASE.downloaderCode}`,
+      title: lang === 'en' ? `Enter Code: ${currentRelease.downloaderCode}` : `কোড দিন: ${currentRelease.downloaderCode}`,
       desc: lang === 'en' 
-        ? `Open Downloader, type code ${CURRENT_RELEASE.downloaderCode} into the URL field and press GO.` 
-        : `Downloader অ্যাপে গিয়ে কোড ${CURRENT_RELEASE.downloaderCode} লিখে GO চাপুন।`
+        ? `Open Downloader, type code ${currentRelease.downloaderCode} into the URL field and press GO.` 
+        : `Downloader অ্যাপে গিয়ে কোড ${currentRelease.downloaderCode} লিখে GO চাপুন।`
     },
     {
       step: '03',
@@ -65,8 +66,8 @@ export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang
       step: '02',
       title: lang === 'en' ? 'Open Downloader App' : 'Downloader অ্যাপে কোড দিন',
       desc: lang === 'en'
-        ? `Open Downloader, enter code ${CURRENT_RELEASE.downloaderCode} in the URL box and click GO.`
-        : `Downloader অ্যাপটি ওপেন করে কোড ${CURRENT_RELEASE.downloaderCode} লিখে GO চাপুন।`
+        ? `Open Downloader, enter code ${currentRelease.downloaderCode} in the URL box and click GO.`
+        : `Downloader অ্যাপটি ওপেন করে কোড ${currentRelease.downloaderCode} লিখে GO চাপুন।`
     },
     {
       step: '03',
@@ -82,8 +83,8 @@ export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang
       step: '01',
       title: lang === 'en' ? 'Download Official APK' : 'অফিসিয়াল APK ডাউনলোড করুন',
       desc: lang === 'en'
-        ? `Click the Download APK button to save ${CURRENT_RELEASE.fileName} (${CURRENT_RELEASE.fileSize}) directly from GitHub Releases.`
-        : `সরাসরি ডাউনলোড বাটনে ক্লিক করে গিটহাব রিলিজ থেকে ${CURRENT_RELEASE.fileName} ফাইলটি নামিয়ে নিন।`
+        ? `Click the Download APK button to save ${currentRelease.fileName} (${currentRelease.fileSize}) directly from GitHub Releases.`
+        : `সরাসরি ডাউনলোড বাটনে ক্লিক করে গিটহাব রিলিজ থেকে ${currentRelease.fileName} ফাইলটি নামিয়ে নিন।`
     },
     {
       step: '02',
@@ -198,7 +199,7 @@ export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang
               {s.step === '02' && (activeTab === 'tv' || activeTab === 'firestick') && (
                 <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
                   <span className="text-xs font-mono text-cyan-300 font-bold">
-                    Code: {CURRENT_RELEASE.downloaderCode}
+                    Code: {currentRelease.downloaderCode}
                   </span>
                   <button
                     onClick={handleCopyCode}
@@ -225,7 +226,7 @@ export const InstallGuide: React.FC<InstallGuideProps> = ({ onOpenDownload, lang
               </h4>
               <p className="text-xs text-slate-400 mt-0.5">
                 {lang === 'en' 
-                  ? `Download ${CURRENT_RELEASE.fileName} (${CURRENT_RELEASE.fileSize}) directly from official GitHub Releases.` 
+                  ? `Download ${currentRelease.fileName} (${currentRelease.fileSize}) directly from official GitHub Releases.` 
                   : `আমাদের অফিসিয়াল গিটহাব রিলিজ থেকে যেকোনো সময় সরাসরি নতুন APK সংস্করণটি নামিয়ে নিতে পারেন।`}
               </p>
             </div>

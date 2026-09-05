@@ -13,13 +13,14 @@ import {
   Wifi,
   Globe2
 } from 'lucide-react';
-import { CURRENT_RELEASE } from '../data/channels';
+import { useRelease } from '../context/ReleaseContext';
 
 interface FeaturesSectionProps {
   lang: 'en' | 'bn';
 }
 
 export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ lang }) => {
+  const { currentRelease } = useRelease();
   const features = [
     {
       icon: Server,
@@ -60,8 +61,8 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ lang }) => {
       icon: ShieldCheck,
       title: lang === 'en' ? 'Clean, Safe & Ad-Track Free' : 'নিরাপদ, ক্লিন ও নো-রুট বিল্ড',
       desc: lang === 'en'
-        ? 'Official verified APK verified on Google Play Protect standards. Zero intrusive trackers, lightweight 18.6 MB size, and no root permissions required.'
-        : 'সম্পূর্ণ নিরাপদ এবং ১৮ মেগাবাইট লাইটওয়েট অ্যাপ। ফোনে বা টিভিতে কোনো অপ্রয়োজনীয় ব্যাকগ্রাউন্ড রিসোর্স নষ্ট করে না।'
+        ? `Official verified APK verified on Google Play Protect standards. Zero intrusive trackers, lightweight ${currentRelease.fileSize} size, and no root permissions required.`
+        : `সম্পূর্ণ নিরাপদ এবং ${currentRelease.fileSize} লাইটওয়েট অ্যাপ। ফোনে বা টিভিতে কোনো অপ্রয়োজনীয় ব্যাকগ্রাউন্ড রিসোর্স নষ্ট করে না।`
     }
   ];
 

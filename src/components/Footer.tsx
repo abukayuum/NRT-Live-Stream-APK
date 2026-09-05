@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tv, ShieldCheck, Heart, ExternalLink, Globe, Sparkles, Github } from 'lucide-react';
-import { CURRENT_RELEASE } from '../data/channels';
+import { useRelease } from '../context/ReleaseContext';
 
 interface FooterProps {
   onOpenDownload: () => void;
@@ -8,6 +8,8 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenDownload, lang }) => {
+  const { currentRelease, isLiveSynced } = useRelease();
+
   return (
     <footer className="bg-[#05070b] border-t border-slate-800 text-slate-400 text-xs relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -25,8 +27,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDownload, lang }) => {
                   NRT <span className="text-cyan-400">STREAM</span>
                 </span>
                 <span className="px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 font-mono text-[10px] border border-cyan-500/20 font-bold">
-                  {CURRENT_RELEASE.version}
+                  {currentRelease.version}
                 </span>
+                {isLiveSynced && (
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" title="Synced with GitHub" />
+                )}
               </div>
             </div>
 
@@ -39,7 +44,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDownload, lang }) => {
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
-                href={CURRENT_RELEASE.githubRepo}
+                href={currentRelease.githubRepo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 font-mono text-[11px] transition-colors"
@@ -78,16 +83,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDownload, lang }) => {
             <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
               <div className="text-[11px] text-slate-400">TV Downloader Code:</div>
               <div className="text-xl font-bold font-mono text-cyan-400">
-                {CURRENT_RELEASE.downloaderCode}
+                {currentRelease.downloaderCode}
               </div>
               <button
                 onClick={onOpenDownload}
                 className="w-full mt-2 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs transition-colors shadow-sm"
               >
-                {lang === 'en' ? 'Download APK Now' : 'APK নামিয়ে নিন'}
+                {lang === 'en' ? `Download APK (${currentRelease.fileSize})` : 'APK নামিয়ে নিন'}
               </button>
               <a
-                href={CURRENT_RELEASE.releasesUrl}
+                href={currentRelease.releasesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center text-[11px] text-slate-400 hover:text-cyan-300 pt-1 transition-colors"
